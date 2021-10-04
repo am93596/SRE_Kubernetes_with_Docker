@@ -49,5 +49,13 @@ spec:
   
   # Template to use its label for k8s service to launch in the browser
   template:
-    
+    metadata:
+      labels:
+        app: nginx  # this label onnects to the service or any other
+    spec:
+      containers:
+      - name: nginx
+        image: am93596/sre_customised_nginx:latest
+        ports:
+        - containerPort: 80
 ```
