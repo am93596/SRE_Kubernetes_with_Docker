@@ -103,3 +103,10 @@ spec:
   
   type: LoadBalancer
 ```
+- run the file with `kubectl create -f nginx-service.yml`
+- check it works with `kubectl get service`
+- open your browser and type in `localhost` to see the nginx page
+- Kubernetes self healing in action:
+  - `kubectl get pods`
+  - `kubectl delete pod pod_name`
+  - Kubernetes automatically makes a new pod, and it doesn't affect the page the user has open in their browser
