@@ -31,3 +31,13 @@ Kubernetes, also known as K8s (`K` + 8 letters + `s`) is an orchestration tool f
 ![kubectl-version-command](https://user-images.githubusercontent.com/88166874/135875359-356b427f-fbc4-4af4-b793-d4e295b4fc1a.PNG)
 
 - To get cluster IP: `cubectl get service`
+
+- Make a folder called `nginx-deploy`, then make a `nginx-deploy.yml` file with the following contents
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment  # naming the deployment
+
+spec:
+  
