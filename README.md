@@ -40,4 +40,14 @@ metadata:
   name: nginx-deployment  # naming the deployment
 
 spec:
+  selector:
+    matchLabels:
+      app: nginx  # look for this label to match with k8s service
   
+  # Let's create a replica set of this with 2 instances/pods
+  replicas: 2
+  
+  # Template to use its label for k8s service to launch in the browser
+  template:
+    
+```
