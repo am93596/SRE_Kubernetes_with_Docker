@@ -99,4 +99,7 @@ spec:
     targetPort: 80
 
   selector:
+    app: nginx
   
+  type: LoadBalancer
+```
