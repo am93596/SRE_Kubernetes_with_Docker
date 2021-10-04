@@ -71,4 +71,32 @@ spec:
 
 ![kubectl-get-pods](https://user-images.githubusercontent.com/88166874/135881202-6d907b1f-a7a9-47c2-b995-ff9b5d91031a.PNG)
 
-- `kubectl describe pod pod_id`
+- `kubectl describe pod name_of_pod` -> name comes from `kubectl get pods`
+
+- new business requirement: traffic expected; we need to increase number of pods
+
+- get name of deployment from `kubectl get deploy` command
+- `kubectl describe deploy nginx-deployment`
+- scale up while the deployment is running
+- `kubectl edit deploy nginx-deployment` -> opens notepad
+- change `replicas:` from `2` to `3`
+- save and close
+- `kubectl get pods` to see the new pod starting
+- new file: `nginx-service.yml` with contents:
+```yaml
+---
+apiVersion: v1
+kind: Service
+# Metadata for name
+metadata:
+  name: nginx-deployment
+  namespace: default
+spec:
+  ports:
+  - nodePort: 30442
+    port: 80
+    protocol: TCP
+    targetPort: 80
+
+  selector:
+  
