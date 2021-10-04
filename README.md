@@ -59,3 +59,16 @@ spec:
         ports:
         - containerPort: 80
 ```
+- `kubectl create -f nginx-deploy.yml` - creates the pods from the yaml file
+
+![kubectl-create-yaml](https://user-images.githubusercontent.com/88166874/135881101-2a1e74c9-8e09-4263-ab33-7f14555a4109.PNG)
+
+- `kubectl get deploy`
+
+![kubectl-get-deploy](https://user-images.githubusercontent.com/88166874/135881153-96cec1f1-fd2b-4e84-a5bf-05708008a264.PNG)
+
+- `kubectl get pods`
+
+![kubectl-get-pods](https://user-images.githubusercontent.com/88166874/135881202-6d907b1f-a7a9-47c2-b995-ff9b5d91031a.PNG)
+
+- `kubectl describe pod pod_id`
