@@ -216,3 +216,11 @@ spec:
 - Create PV and PVC to claim storage
 - delete app deploy, uncomment env lines, then recreate both db and app
 - create a diagram for mongo deploy and svc
+
+##### mongodb diagram
+![image](https://user-images.githubusercontent.com/88166874/136045116-45ccc8bd-82bf-4025-bb08-1a9b9f97d6ff.png)
+
+##### Node app with mongodb diagram
+![image](https://user-images.githubusercontent.com/88166874/136045682-cfdb1d54-a8fe-42cb-8b32-07d2318163dc.png)
+
+
