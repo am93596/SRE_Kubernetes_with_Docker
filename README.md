@@ -170,9 +170,9 @@ spec:
         ports:
         - containerPort: 3000
         
-        #env:
-        #- name: DB_HOST
-        #  value: mongodb://mongo:27017/posts
+        env:
+        - name: DB_HOST
+          value: mongodb://mongo:27017/posts
 ```
 #### node-svc.yml
 ```yaml
@@ -185,7 +185,7 @@ spec:
   selector:
     app: node
   ports:
-  - port: 3000
+  - port: 3000  # put 80 to get it to work with localhost (instead of localhost:3000)
     targetPort: 3000
   type: LoadBalancer
 ```
@@ -223,4 +223,53 @@ spec:
 ##### Node app with mongodb diagram
 ![image](https://user-images.githubusercontent.com/88166874/136045682-cfdb1d54-a8fe-42cb-8b32-07d2318163dc.png)
 
+### Connecting NodeJS app to MongoDB
 
+#### mongodb-deploy.yml
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+spec:
+  selector:
+    matchLabels:
+      app: mongo
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:latest
+
+        ports:
+        - containerPort: 27017
+```
+#### mongodb-svc.yml
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  selector:
+    app: mongo
+  ports:
+  - port: 27017
+    targetPort: 27017
+  type: LoadBalancer
+```
+- `kubectl delete deploy node`
+- `kubectl delete svc node`
+- `kubectl delete hpa sparta-node-app-deploy`
+- `kubectl create -f mongodb-deploy.yml`
+- `kubectl create -f mongodb-svc.yml`
+- `kubectl create -f node-deploy.yml`
+- `kubectl create -f node-svc.yml`
+- `kubectl create -f node-hpa.yml`
+
+### Creating Persistent Volume for MongoDB
