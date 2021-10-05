@@ -135,7 +135,7 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 ### Diagram of NodeJS app deployment with Kubernetes
 
-![image](https://user-images.githubusercontent.com/88166874/136028313-6fc8b653-1df8-4f0c-933d-9045cb23573c.png)
+![image](https://user-images.githubusercontent.com/88166874/136041757-53af35bd-6a49-402b-819b-a05e4622f52a.png)
 
 - `kubectl delete deploy nginx-deployment`
 - `kubectl delete svc nginx-svc`
