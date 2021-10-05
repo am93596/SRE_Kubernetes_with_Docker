@@ -33,7 +33,7 @@ Kubernetes helps you manage containerised applications in different environments
 
 ![kubectl-version-command](https://user-images.githubusercontent.com/88166874/135875359-356b427f-fbc4-4af4-b793-d4e295b4fc1a.PNG)
 
-- To get cluster IP: `cubectl get service`
+- To get cluster IP: `kubectl get service`
 
 - Make a folder called `nginx-deploy`, then make a `nginx-deploy.yml` file with the following contents
 ```yaml
