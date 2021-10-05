@@ -10,8 +10,6 @@ Kubernetes, also known as K8s (`K` + 8 letters + `s`) is an open source containe
 
 ![image](https://user-images.githubusercontent.com/88166874/135992346-789e7280-8e61-4837-92cb-ca58657ae409.png)
 
-![image](https://user-images.githubusercontent.com/88166874/135991986-b3bdc00a-83a0-4480-87bd-460638faa86e.png)
-
 ## Kubernetes Components
 A Kubernetes node is a physical server or virtual machine that holds the contents of the application. These contain pods, which are running environments layered over containers. This allows Kubernetes to abstract away the technical aspects of running a container to them simpler to run, as well as making it easy to change container type. Our application container may have one pod, and that may use a database pod with its own container. A pod is usually meant to run just one container, but you can run multiple containers with a single pod (usually used for running an app with a connected helper container, for example a database)
 
