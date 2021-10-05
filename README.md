@@ -271,6 +271,64 @@ spec:
 - `kubectl create -f node-deploy.yml`
 - `kubectl create -f node-svc.yml`
 - `kubectl create -f node-hpa.yml`
-- `kubectl exec name_of_pod env node seeds/seed.js
+- `kubectl exec name_of_pod env node seeds/seed.js`
 
 ### Creating Persistent Volume for MongoDB
+#### mongodb-pv.yml
+- Makes a persistent volume (PV) for the mongoDB database, to store the data permanently
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-db-pv
+spec:
+  capacity:
+    storage: 256Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: slow
+  hostPath:
+    path: /data
+    type: Directory
+```
+#### mongodb-pvc.yml
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-db-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 256Mi
+```
+#### Paste the following into the bottom of the mongodb-deploy.yml file
+```yaml
+        volumeMounts:
+        - name: storage
+          mountPath: /data/db
+
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: mongo-db-pvc
+```  
+#### Then run the following commands:  
+- `kubectl delete deploy node`
+- `kubectl delete svc node`
+- `kubectl delete hpa sparta-node-app-deploy`
+- `kubectl delete deploy mongo`
+- `kubectl delete svc mongo`
+- `kubectl create -f mongodb-pv.yml`
+- `kubectl create -f mongodb-pvc.yml`
+- `kubectl create -f mongodb-deploy.yml`
+- `kubectl create -f mongodb-svc.yml`
+- `kubectl create -f node-deploy.yml`
+- `kubectl create -f node-svc.yml`
+- `kubectl create -f node-hpa.yml`
+- `kubectl exec name_of_pod env node seeds/seed.js`  
+Open `http://localhost:3000/` in your browser - the Sparta Test Page should appear. Then open `http://localhost:3000/posts` - the posts should display.
