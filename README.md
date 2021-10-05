@@ -139,7 +139,7 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 - `kubectl delete deploy nginx-deployment`
 - `kubectl delete svc nginx-svc`
-- make the following yaml files:
+- make the following yaml files in a new folder called `node-mongo-deployment`:
 #### node-deploy.yml
 ```yaml
 # Create a diagram for node deployment and service
@@ -165,7 +165,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: am93596/sre_node_app
+        image: am93596/sre_node_app:v1
  
         ports:
         - containerPort: 3000
@@ -173,4 +173,19 @@ spec:
         #env:
         #- name: DB_HOST
         #  value: mongodb://mongo:27017/posts
+```
+#### node-svc.yml
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node
+spec:
+  selector:
+    app: node
+  ports:
+  - port: 3000
+    targetPort: 3000
+  type: LoadBalancer
 ```
