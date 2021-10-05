@@ -33,7 +33,7 @@ Kubernetes helps you manage containerised applications in different environments
 
 ![kubectl-version-command](https://user-images.githubusercontent.com/88166874/135875359-356b427f-fbc4-4af4-b793-d4e295b4fc1a.PNG)
 
-- To get cluster IP: `cubectl get service`
+- To get cluster IP: `kubectl get service`
 
 - Make a folder called `nginx-deploy`, then make a `nginx-deploy.yml` file with the following contents
 ```yaml
@@ -135,4 +135,84 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 ### Diagram of NodeJS app deployment with Kubernetes
 
-![nodejs-k8s-diagram](https://user-images.githubusercontent.com/88166874/136014091-01e720c3-9dd9-4538-9b06-e5468e5b98a3.PNG)
+![image](https://user-images.githubusercontent.com/88166874/136028313-6fc8b653-1df8-4f0c-933d-9045cb23573c.png)
+
+- `kubectl delete deploy nginx-deployment`
+- `kubectl delete svc nginx-svc`
+- make the following yaml files in a new folder called `node-mongo-deployment`:
+#### node-deploy.yml
+```yaml
+# Create a diagram for node deployment and service
+# use the example of nginx deployment and service
+# nodeapp deployment to have 3 pods min
+# service within the same cluster and namespace to connect to node deploy
+# type LoadBalancer
+# End goal is to see our node app running port localhost:3000
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+spec:
+  selector:
+    matchLabels:
+      app: node
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: node
+        image: am93596/sre_node_app:v1
+ 
+        ports:
+        - containerPort: 3000
+        
+        #env:
+        #- name: DB_HOST
+        #  value: mongodb://mongo:27017/posts
+```
+#### node-svc.yml
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node
+spec:
+  selector:
+    app: node
+  ports:
+  - port: 3000
+    targetPort: 3000
+  type: LoadBalancer
+```
+#### node-hpa.yml
+```yaml
+# horizontal pod autoscaler - auto scaling group for kubernetes pods
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler # (hpa)
+
+metadata:
+  name: sparta-node-app-deploy
+  namespace: default
+
+spec:
+  maxReplicas: 9  # (max number of instances/pods)
+  minReplicas: 3  # (min number of instances/pods)
+  scaleTargetRef: # Targets the node deployment
+    apiVersion: apps/v1
+    kind: Deployment
+    name: node
+  targetCPUUtilizationPercentage: 50  # 50% of CPU usage
+  ```
+  - `kubectl create -f name_of_file`
+  - `kubectl get hpa`
+
+#### task
+- Create deploy and service for mongo
+- Create PV and PVC to claim storage
+- delete app deploy, uncomment env lines, then recreate both db and app
+- create a diagram for mongo deploy and svc
