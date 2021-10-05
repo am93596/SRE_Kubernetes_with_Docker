@@ -21,12 +21,11 @@ spec:
     spec:
       containers:
       - name: node
-        image: am93596/sre_node_app
+        image: am93596/sre_node_app:v1
  
         ports:
         - containerPort: 3000
         
-        #env:
-        #- name: DB_HOST
-        #  value: mongodb://mongo:27017/posts
-  
+        env:
+        - name: DB_HOST
+          value: mongodb://mongo:27017/posts

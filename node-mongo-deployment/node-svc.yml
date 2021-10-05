@@ -7,6 +7,6 @@ spec:
   selector:
     app: node
   ports:
-  - port: 3000
+  - port: 3000  # put 80 to get it to work with localhost (instead of localhost:3000)
     targetPort: 3000
   type: LoadBalancer
