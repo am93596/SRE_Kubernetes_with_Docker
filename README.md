@@ -1,17 +1,20 @@
 # Kubernetes With Docker
 
-## What is Kubernetes (K8s)?
-Kubernetes, also known as K8s (`K` + 8 letters + `s`) is an orchestration tool for microservices. It can be used to manage any container, such as Docker containers or CRI-O containers. Kubernetes was built by Google, and they developed and maintained it for over 15 years, before gifting it to the Linux foundation in 2014.  
+![image](https://user-images.githubusercontent.com/88166874/135991408-1ead1d76-9ef2-4bad-bcff-60bba22aed62.png)
 
-## Kubernetes Deployment
-*unfinished*
+## What is Kubernetes (K8s)?
+Kubernetes, also known as K8s (`K` + 8 letters + `s`) is an open source container orchestration tool. Kubernetes is used for automated deployment, scaling, and management of containerised applications. It can be used to manage any container, such as Docker containers or CRI-O containers. Kubernetes was built by Google, and they developed and maintained it for over 15 years, before gifting it to the Linux foundation in 2014.  
+
+## Kubernetes Architecture
+### Types of Kubernetes Architecture
+
+![image](https://user-images.githubusercontent.com/88166874/135992346-789e7280-8e61-4837-92cb-ca58657ae409.png)
+
+## Kubernetes Components
+A Kubernetes node is a physical server or virtual machine that holds the contents of the application. These contain pods, which are running environments layered over containers. This allows Kubernetes to abstract away the technical aspects of running a container to them simpler to run, as well as making it easy to change container type. Our application container may have one pod, and that may use a database pod with its own container. A pod is usually meant to run just one container, but you can run multiple containers with a single pod (usually used for running an app with a connected helper container, for example a database)
 
 ## Benefits of Kubernetes
-*unfinished*
-- self healing
-- load balancing
-- automated rollbacks
-- autoscaling
+Kubernetes helps you manage containerised applications in different environments, e.g. physical, virtual, cloud, and hybrid. Kubernetes offers high availability by auto scaling the number of pods as required, so that your application is always available to your users. Another benefit of Kubernetes is load balancing - your users will be automatically distributed between your pods so that pods are not overloaded and your application is always responsive. Kubernetes is also self healing, which means that if anything goes wrong with one of your pods, Kubernetes will pass the users of that pod to another one, then restore pod and add it back to the load balancing pool once it is working again
 
 ## Enabling Kubernetes in Docker
 - Open Docker Desktop as admin, and make sure docker is running
@@ -103,3 +106,33 @@ spec:
   
   type: LoadBalancer
 ```
+- run the file with `kubectl create -f nginx-service.yml`
+- check it works with `kubectl get service`
+- open your browser and type in `localhost` to see the nginx page
+- Kubernetes self healing in action:
+  - `kubectl get pods`
+  - `kubectl delete pod pod_name`
+  - Kubernetes automatically makes a new pod, and it doesn't affect the page the user has open in their browser
+
+### Tues 5th Oct
+- `kubectl get all`
+- `kubectl delete svc nginx-deployment`
+- Then open your browser and type in `localhost` - this will not work as you no longer have a service
+- The pods are invisible from outside the deployment - so we need a service to make them accessible from the internet
+- Works by matching labels with our selector - in our example, we labelled our app as `nginx`
+- Within the cluster, an API call is made to search the labels for the selector
+- `kubectl edit deploy nginx-deployment` - can edit the version to roll back to in here
+
+### Labels and Selectors
+https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+
+### Namespaces
+https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+- `kubectl get namespace`
+- `kubectl create namespace sparta`
+- `kubectl delete namespace sparta`
+
+### Diagram of NodeJS app deployment with Kubernetes
+
+![nodejs-k8s-diagram](https://user-images.githubusercontent.com/88166874/136014091-01e720c3-9dd9-4538-9b06-e5468e5b98a3.PNG)
