@@ -6,6 +6,9 @@
 Kubernetes, also known as K8s (`K` + 8 letters + `s`) is an open source container orchestration tool. Kubernetes is used for automated deployment, scaling, and management of containerised applications. It can be used to manage any container, such as Docker containers or CRI-O containers. Kubernetes was built by Google, and they developed and maintained it for over 15 years, before gifting it to the Linux foundation in 2014.  
 
 ## Kubernetes Architecture
+### Types of Kubernetes Architecture
+
+![image](https://user-images.githubusercontent.com/88166874/135992346-789e7280-8e61-4837-92cb-ca58657ae409.png)
 
 ![image](https://user-images.githubusercontent.com/88166874/135991986-b3bdc00a-83a0-4480-87bd-460638faa86e.png)
 
