@@ -271,7 +271,7 @@ spec:
 - `kubectl create -f node-deploy.yml`
 - `kubectl create -f node-svc.yml`
 - `kubectl create -f node-hpa.yml`
-- `kubectl exec name_of_pod env node seeds/seed.js`
+- `kubectl exec name_of_node_pod env node seeds/seed.js`
 
 ### Creating Persistent Volume for MongoDB
 #### mongodb-pv.yml
@@ -290,7 +290,7 @@ spec:
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: slow
   hostPath:
-    path: /data
+    path: /data/db
     type: Directory
 ```
 #### mongodb-pvc.yml
@@ -330,5 +330,13 @@ spec:
 - `kubectl create -f node-deploy.yml`
 - `kubectl create -f node-svc.yml`
 - `kubectl create -f node-hpa.yml`
-- `kubectl exec name_of_pod env node seeds/seed.js`  
-Open `http://localhost:3000/` in your browser - the Sparta Test Page should appear. Then open `http://localhost:3000/posts` - the posts should display.
+- `kubectl exec name_of_node_pod env node seeds/seed.js`
+Open `http://localhost:3000/` in your browser - the Sparta Test Page should appear.  
+
+![image](https://user-images.githubusercontent.com/88166874/136064276-ea9ddb62-f28c-4d6f-ac04-67f8cc10873e.png)
+
+Then open `http://localhost:3000/posts` - the posts should display.  
+
+![image](https://user-images.githubusercontent.com/88166874/136064374-760c4226-9bd3-4520-9ebb-0290ff34d201.png)
+
+*only one of the mongodb pods works, not sure why*
