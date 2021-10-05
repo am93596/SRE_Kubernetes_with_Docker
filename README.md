@@ -189,3 +189,30 @@ spec:
     targetPort: 3000
   type: LoadBalancer
 ```
+#### node-hpa.yml
+```yaml
+# horizontal pod autoscaler - auto scaling group for kubernetes pods
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler # (hpa)
+
+metadata:
+  name: sparta-node-app-deploy
+  namespace: default
+
+spec:
+  maxReplicas: 9  # (max number of instances/pods)
+  minReplicas: 3  # (min number of instances/pods)
+  scaleTargetRef: # Targets the node deployment
+    apiVersion: apps/v1
+    kind: Deployment
+    name: node
+  targetCPUUtilizationPercentage: 50  # 50% of CPU usage
+  ```
+  - `kubectl create -f name_of_file`
+  - `kubectl get hpa`
+
+#### task
+- Create deploy and service for mongo
+- Create PV and PVC to claim storage
+- delete app deploy, uncomment env lines, then recreate both db and app
+- create a diagram for mongo deploy and svc
