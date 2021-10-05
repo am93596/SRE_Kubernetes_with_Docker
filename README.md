@@ -339,4 +339,4 @@ Then open `http://localhost:3000/posts` - the posts should display.
 
 ![image](https://user-images.githubusercontent.com/88166874/136064374-760c4226-9bd3-4520-9ebb-0290ff34d201.png)
 
-*only one of the mongodb pods works, not sure why*
+*only one of the mongodb pods works; may be to do with 256Mi restriction on the PV and PVC memory*
