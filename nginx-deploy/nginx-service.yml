@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 # Metadata for name
 metadata:
-  name: nginx-deployment
+  name: nginx-svc
   namespace: default
 spec:
   ports:

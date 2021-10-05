@@ -1,0 +1,16 @@
+# horizontal pod autoscaler - auto scaling group for kubernetes pods
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler # (hpa)
+
+metadata:
+  name: sparta-node-app-deploy
+  namespace: default
+
+spec:
+  maxReplicas: 9  # (max number of instances/pods)
+  minReplicas: 3  # (min number of instances/pods)
+  scaleTargetRef: # Targets the node deployment
+    apiVersion: apps/v1
+    kind: Deployment
+    name: node
+  targetCPUUtilizationPercentage: 50  # 50% of CPU usage
