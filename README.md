@@ -136,3 +136,41 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 ### Diagram of NodeJS app deployment with Kubernetes
 
 ![image](https://user-images.githubusercontent.com/88166874/136028313-6fc8b653-1df8-4f0c-933d-9045cb23573c.png)
+
+- `kubectl delete deploy nginx-deployment`
+- `kubectl delete svc nginx-svc`
+- make the following yaml files:
+#### node-deploy.yml
+```yaml
+# Create a diagram for node deployment and service
+# use the example of nginx deployment and service
+# nodeapp deployment to have 3 pods min
+# service within the same cluster and namespace to connect to node deploy
+# type LoadBalancer
+# End goal is to see our node app running port localhost:3000
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+spec:
+  selector:
+    matchLabels:
+      app: node
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: node
+        image: am93596/sre_node_app
+ 
+        ports:
+        - containerPort: 3000
+        
+        #env:
+        #- name: DB_HOST
+        #  value: mongodb://mongo:27017/posts
+```
