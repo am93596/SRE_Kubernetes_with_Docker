@@ -271,5 +271,6 @@ spec:
 - `kubectl create -f node-deploy.yml`
 - `kubectl create -f node-svc.yml`
 - `kubectl create -f node-hpa.yml`
+- `kubectl exec name_of_pod env node seeds/seed.js
 
 ### Creating Persistent Volume for MongoDB
