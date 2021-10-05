@@ -122,3 +122,17 @@ spec:
 - Works by matching labels with our selector - in our example, we labelled our app as `nginx`
 - Within the cluster, an API call is made to search the labels for the selector
 - `kubectl edit deploy nginx-deployment` - can edit the version to roll back to in here
+
+### Labels and Selectors
+https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+
+### Namespaces
+https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+- `kubectl get namespace`
+- `kubectl create namespace sparta`
+- `kubectl delete namespace sparta`
+
+### Diagram of NodeJS app deployment with Kubernetes
+
+![nodejs-k8s-diagram](https://user-images.githubusercontent.com/88166874/136013788-0b917e22-5aba-48ad-8163-edbb1a44e690.PNG)
