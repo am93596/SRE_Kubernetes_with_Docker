@@ -135,4 +135,4 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 ### Diagram of NodeJS app deployment with Kubernetes
 
-![nodejs-k8s-diagram](https://user-images.githubusercontent.com/88166874/136014091-01e720c3-9dd9-4538-9b06-e5468e5b98a3.PNG)
+![image](https://user-images.githubusercontent.com/88166874/136028313-6fc8b653-1df8-4f0c-933d-9045cb23573c.png)
