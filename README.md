@@ -113,3 +113,12 @@ spec:
   - `kubectl get pods`
   - `kubectl delete pod pod_name`
   - Kubernetes automatically makes a new pod, and it doesn't affect the page the user has open in their browser
+
+### Tues 5th Oct
+- `kubectl get all`
+- `kubectl delete svc nginx-deployment`
+- Then open your browser and type in `localhost` - this will not work as you no longer have a service
+- The pods are invisible from outside the deployment - so we need a service to make them accessible from the internet
+- Works by matching labels with our selector - in our example, we labelled our app as `nginx`
+- Within the cluster, an API call is made to search the labels for the selector
+- `kubectl edit deploy nginx-deployment` - can edit the version to roll back to in here
