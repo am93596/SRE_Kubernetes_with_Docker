@@ -317,12 +317,14 @@ spec:
         persistentVolumeClaim:
           claimName: mongo-db-pvc
 ```  
-#### Then run the following commands:  
+#### Then run the following commands:
+- Clear down the old deploys
 - `kubectl delete deploy node`
 - `kubectl delete svc node`
 - `kubectl delete hpa sparta-node-app-deploy`
 - `kubectl delete deploy mongo`
 - `kubectl delete svc mongo`
+- Start again
 - `kubectl create -f mongodb-pv.yml`
 - `kubectl create -f mongodb-pvc.yml`
 - `kubectl create -f mongodb-deploy.yml`
