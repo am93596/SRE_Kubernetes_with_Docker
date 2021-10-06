@@ -363,4 +363,33 @@ It helps you automate the process of running tasks that need to be scheduled for
 #      |      │ │ │ │ │
 # CRON_TZ=UTC * * * * *
 ```
-Make a yaml file
+- timezone: where you can specify the timezone *put list of timezones here*
+- 
+Make a `cron-job.yml` file with the following contents:
+```yaml
+# Select the API - cronjob works as a batch process
+
+apiVersion: batch/v1
+
+kind: CronJob
+metadata:
+  # Follow the naming convention - capital isn't accepted
+  name: sre_cronjob
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: sre
+            image: busybox
+            imagePullPolicy: IfNotPresent
+            # This command will override the cmd command from the Dockerfile
+            command:
+            - /bin/sh
+            - -c
+            - date; echo thank you for using cronjob
+          
+          restartPolicy: OnFailure
+```
