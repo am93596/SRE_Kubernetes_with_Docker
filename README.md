@@ -410,6 +410,10 @@ spec:
 ![image](https://user-images.githubusercontent.com/88166874/136192702-518fb2e1-0afc-48d5-9ca8-f41d5a42c8ce.png)
 
 - Then enter `pods=$(kubectl get pods --selector=job-name=name_of_pod  --output=jsonpath={.items[*].metadata.name})` - replace name_of_pod with the name of the running pod
-- `kubectl logs $pods`
+- `kubectl logs name-of-pod`
+- Should see the following message:
+
+![image](https://user-images.githubusercontent.com/88166874/136195480-4f33bcb4-d9e7-4b6a-b2c8-9181376f8432.png)
+
 - `kubectl get cronjob --watch` - a new job will be created every minute
 - Once the CronJob is working, you can delete it using `kubectl delete cronjob sre`
