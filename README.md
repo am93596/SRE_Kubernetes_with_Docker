@@ -363,8 +363,9 @@ It helps you automate the process of running tasks that need to be scheduled for
 #      |      │ │ │ │ │
 # CRON_TZ=UTC * * * * *
 ```
-- timezone: where you can specify the timezone *put list of timezones here*
-- 
+- timezone: where you can specify the timezone - if left blank, it uses the default for your machine. *put list of timezones here*
+- 1st star: specify to run every _ minutes (between 0 and 59)
+- 2nd star: specify to run every _ hours (between 0 and 23)
 Make a `cron-job.yml` file with the following contents:
 ```yaml
 # Select the API - cronjob works as a batch process
@@ -374,7 +375,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   # Follow the naming convention - capital isn't accepted
-  name: sre_cronjob
+  name: sre
 spec:
   schedule: "*/1 * * * *"
   jobTemplate:
@@ -393,3 +394,4 @@ spec:
           
           restartPolicy: OnFailure
 ```
+- Then run it using `kubectl create -f cron-job.yml`
