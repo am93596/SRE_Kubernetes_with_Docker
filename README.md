@@ -2,6 +2,10 @@
 
 ![image](https://user-images.githubusercontent.com/88166874/135991408-1ead1d76-9ef2-4bad-bcff-60bba22aed62.png)
 
+## Diagram of Kubernetes Architecture for NodeJS App With MongoDB and Persistent Volume
+
+![image](https://user-images.githubusercontent.com/88166874/136214072-7988ec64-67cd-40b6-aaf1-6c28ef7c24e8.png)
+
 ## What is Kubernetes (K8s)?
 Kubernetes, also known as K8s (`K` + 8 letters + `s`) is an open source container orchestration tool. Kubernetes is used for automated deployment, scaling, and management of containerised applications. It can be used to manage any container, such as Docker containers or CRI-O containers. Kubernetes was built by Google, and they developed and maintained it for over 15 years, before gifting it to the Linux foundation in 2014.  
 
