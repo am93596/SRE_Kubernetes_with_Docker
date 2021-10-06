@@ -344,9 +344,23 @@ Then open `http://localhost:3000/posts` - the posts should display.
 
 ### CronJob in Kubernetes
 #### What is cronjob?
-CronJob is a task scheduler. It can be used to automate the regular running of a task (e.g. backups, report generation, etc) along a particular repeated pattern, for example every 5 minutes, or every morning.
+CronJob is a task scheduler. It can be used to automate the regular running of a task (e.g. backups, report generation, etc) along a particular repeated pattern, for example every 5 minutes, or every morning. Examples of cron jobs include alarms, scheduled emails, scheduled social media posts, etc]
 #### What are the benefits of CronJob?
-It helps you automate the process of running tasks that need to be scheduled for particular times. It supports timezone handling, so you can specify the relevant timezone for your jobs
+It helps you automate the process of running tasks that need to be scheduled for particular times. It supports timezone handling, so you can specify the relevant timezone for your jobs.
 
-#### Use cases of cronjob
-#### How do we use cronjob?
+#### Use cases of CronJob
+#### How do we use CronJob?
+##### Cron schedule syntax
+```
+#      ┌────────────────── timezone (optional)
+#      |      ┌───────────── minute (0 - 59)
+#      |      │ ┌───────────── hour (0 - 23)
+#      |      │ │ ┌───────────── day of the month (1 - 31)
+#      |      │ │ │ ┌───────────── month (1 - 12)
+#      |      │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
+#      |      │ │ │ │ │                                   7 is also Sunday on some systems)
+#      |      │ │ │ │ │
+#      |      │ │ │ │ │
+# CRON_TZ=UTC * * * * *
+```
+Make a yaml file
