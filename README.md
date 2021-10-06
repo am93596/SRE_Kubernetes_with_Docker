@@ -342,6 +342,15 @@ Then open `http://localhost:3000/posts` - the posts should display.
 
 ![image](https://user-images.githubusercontent.com/88166874/136064374-760c4226-9bd3-4520-9ebb-0290ff34d201.png)
 
+- Now that works, you can clear down the mongodb and node deploys etc:
+- `kubectl delete deploy node`
+- `kubectl delete svc node`
+- `kubectl delete hpa sparta-node-app-deploy`
+- `kubectl delete deploy mongo`
+- `kubectl delete svc mongo`
+- `kubectl delete pvc mongo-db-pvc`
+- `kubectl delete pv mongo-db-pv`
+
 ### CronJob in Kubernetes
 #### What is cronjob?
 CronJob is a task scheduler. It can be used to automate the regular running of a task (e.g. backups, report generation, etc) along a particular repeated pattern, for example every 5 minutes, or every morning. Examples of cron jobs include alarms, scheduled emails, scheduled social media posts, etc]
@@ -395,3 +404,7 @@ spec:
           restartPolicy: OnFailure
 ```
 - Then run it using `kubectl create -f cron-job.yml`
+- Check it works with `kubectl get cj`
+
+![image](https://user-images.githubusercontent.com/88166874/136192702-518fb2e1-0afc-48d5-9ca8-f41d5a42c8ce.png)
+
