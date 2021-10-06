@@ -339,3 +339,12 @@ Open `http://localhost:3000/` in your browser - the Sparta Test Page should appe
 Then open `http://localhost:3000/posts` - the posts should display.  
 
 ![image](https://user-images.githubusercontent.com/88166874/136064374-760c4226-9bd3-4520-9ebb-0290ff34d201.png)
+
+### CronJob in Kubernetes
+#### What is cronjob?
+CronJob is a task scheduler. It can be used to automate the regular running of a task (e.g. backups, report generation, etc) along a particular repeated pattern, for example every 5 minutes, or every morning.
+#### What are the benefits of CronJob?
+It helps you automate the process of running tasks that need to be scheduled for particular times. It supports timezone handling, so you can specify the relevant timezone for your jobs
+
+#### Use cases of cronjob
+#### How do we use cronjob?
