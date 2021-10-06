@@ -331,6 +331,7 @@ spec:
 - `kubectl create -f node-svc.yml`
 - `kubectl create -f node-hpa.yml`
 - `kubectl exec name_of_node_pod env node seeds/seed.js`  
+
 Open `http://localhost:3000/` in your browser - the Sparta Test Page should appear.  
 
 ![image](https://user-images.githubusercontent.com/88166874/136064276-ea9ddb62-f28c-4d6f-ac04-67f8cc10873e.png)
