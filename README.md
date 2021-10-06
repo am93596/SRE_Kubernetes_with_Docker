@@ -375,6 +375,7 @@ It helps you automate the process of running tasks that need to be scheduled for
 - timezone: where you can specify the timezone - if left blank, it uses the default for your machine. *put list of timezones here*
 - 1st star: specify to run every _ minutes (between 0 and 59)
 - 2nd star: specify to run every _ hours (between 0 and 23)
+- 2nd star: specify to run every _ hours (between 0 and 23)
 Make a `cron-job.yml` file with the following contents:
 ```yaml
 # Select the API - cronjob works as a batch process
@@ -408,3 +409,7 @@ spec:
 
 ![image](https://user-images.githubusercontent.com/88166874/136192702-518fb2e1-0afc-48d5-9ca8-f41d5a42c8ce.png)
 
+- Then enter `pods=$(kubectl get pods --selector=job-name=name_of_pod  --output=jsonpath={.items[*].metadata.name})` - replace name_of_pod with the name of the running pod
+- `kubectl logs $pods`
+- `kubectl get cronjob --watch` - a new job will be created every minute
+- Once the CronJob is working, you can delete it using `kubectl delete cronjob sre`
